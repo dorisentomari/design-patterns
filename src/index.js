@@ -1,32 +1,27 @@
-class JQuery {
-  constructor(selector) {
-    let slice = Array.prototype.slice;
-    let dom = slice.call(document.querySelectorAll(selector));
-    let len = dom ? dom.length : 0;
-    for (let i = 0; i < len; i++) {
-      this[i] = dom[i];
-      console.log(this);
-      console.log(this[i]);
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    let img = document.createElement('img');
+    img.onload = function () {
+      resolve(img);
     }
-    this.length = len;
-    this.selector = selector || '';
-  }
-
-  append(node) {
-
-  }
-
-  addClass(name) {
-
-  }
-
-  html(data) {
-
-  }
-
+    img.onerror = function () {
+      reject('加载失败');
+    }
+    img.src = src;
+  });
 }
 
-window.$ = function (selector) {
-  // 工厂模式
-  return new JQuery(selector);
-};
+let src = 'https://www.baidu.com/img/bd_logo1.png';
+let result = loadImage(src);
+
+result.then(img => {
+  console.log('img.width', img.width);
+  return img;
+}).then(img => {
+  console.log('img.height', img.height);
+  return img;
+}).then(img => {
+  console.log('img.src', img.src);
+}).catch(error => {
+  console.log(error);
+});
