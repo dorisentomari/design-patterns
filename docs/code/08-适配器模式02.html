@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vue 适配器模式</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.17/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <h1>message: {{message}}</h1>
+  <h1>reversedMessage: {{reversedMessage}}</h1>
+</div>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello'
+    },
+    computed: {
+      reversedMessage: function() {
+        return this.message.split('').reverse().join('');
+      }
+    }
+  });
+</script>
+</body>
+</html>
