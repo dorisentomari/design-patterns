@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>观察者模式之网页事件绑定</title>
+  <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+</head>
+<body>
+<button id="btn">click</button>
+<script>
+  $('#btn').click(function () {
+    console.log(1);
+  });
+
+  $('#btn').click(function () {
+    console.log(2);
+  });
+
+  $('#btn').click(function () {
+    console.log(3);
+  });
+</script>
+</body>
+</html>

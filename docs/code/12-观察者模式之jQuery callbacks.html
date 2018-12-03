@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>观察者模式之jQuery callbacks</title>
+  <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+</head>
+<body>
+<script>
+  let callbacks = $.Callbacks();
+  console.log(callbacks);
+  callbacks.add(function (info) {
+    console.log('fn1', info);
+  });
+
+  callbacks.add(function (info) {
+    console.log('fn2', info);
+  });
+
+  callbacks.add(function (info) {
+    console.log('fn3', info);
+  });
+
+  callbacks.fire('gogogo');
+  callbacks.fire('fire');
+
+</script>
+</body>
+</html>

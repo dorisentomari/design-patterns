@@ -1,33 +1,49 @@
-let star = {
-  name: '雪人',
-  age: 24,
-  phone: 'star: 15612345678'
-};
-let agent = new Proxy(star, {
-  get: function (target, key) {
-    if (key === 'phone') {
-      return 'agent: 18712345678';
-    }
-    if (key === 'price') {
-      return 12000;
-    }
-    return target[key];
-  },
-  set: function (target, key, value) {
-    if (key === 'customPrice') {
-      if (value < 10000) {
-        throw new Error('价格太低');
-      } else {
-        target[key] = value;
-        return true;
-      }
-    }
+// 主题，保存状态，状态变化后触发所有观察者对象
+class Subject {
+  constructor() {
+    this.state = 0;
+    this.observers = [];
   }
-});
 
-console.log(agent.name);
-console.log(agent.age);
-console.log(agent.phone);
-console.log(agent.price);
-agent.customPrice = 91999;
-console.log(agent.customPrice);
+  getState() {
+    return this.state;
+  }
+
+  setState(state) {
+    this.state = state;
+    this.notifyAllObservers();
+  }
+
+  notifyAllObservers() {
+    this.observers.forEach(observer => {
+      observer.update();
+    });
+  }
+
+  attach(observer) {
+    this.observers.push(observer);
+  }
+
+}
+
+// 观察者
+class Observer {
+  constructor (name, subject) {
+    this.name = name;
+    this.subject = subject;
+    this.subject.attach(this);
+  }
+
+  update () {
+    console.log(`${this.name} update, state: ${this.subject.getState()}`);
+  }
+
+}
+
+let subject = new Subject();
+let o1 = new Observer('o1', subject);
+let o2 = new Observer('o2', subject);
+let o3 = new Observer('o3', subject);
+subject.setState(1);
+subject.setState(2);
+subject.setState(3);
