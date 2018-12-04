@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>迭代器模式之[Symbol.iterator]</title>
+</head>
+<body>
+<script>
+  function each(data) {
+    let iterator;
+    if (!data[Symbol.iterator]) {
+      return false;
+    }
+    iterator = data[Symbol.iterator]();
+    let item = {done: false};
+    while (!item.done) {
+      item = iterator.next();
+      if (!item.done) {
+        console.log(item.value);
+      } else {
+        console.log(item);
+      }
+    }
+  }
+
+  let s = new Set([1, 2, 3]);
+  let m = new Map();
+  m.set('name', 'mark');
+  m.set('age', 18);
+  m.set('home', 'beijing');
+  each(s);
+  console.log('-----分割线-----');
+  each(m);
+</script>
+</body>
+</html>

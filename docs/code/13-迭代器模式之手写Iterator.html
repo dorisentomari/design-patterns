@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>迭代器模式之手写Iterator</title>
+</head>
+<body>
+<script>
+  class Iterator {
+    constructor(container) {
+      this.list = container.list;
+      this.index = 0;
+    }
+
+    next() {
+      if (this.hasNext()) {
+        return this.list[this.index++];
+      }
+      return null;
+    }
+
+    hasNext() {
+      if (this.index >= this.list.length) {
+        return false;
+      }
+      return true;
+    }
+
+  }
+
+
+  class Container {
+    constructor(list) {
+      this.list = list;
+    }
+
+    getIterator() {
+      return new Iterator(this);
+    }
+
+  }
+
+  function random() {
+    return Math.random().toString(32).slice(-6).toUpperCase();
+  }
+
+  let arr = [random(), random(), random(), random(), random()];
+  let container = new Container(arr);
+  let iterator = container.getIterator();
+  while (iterator.hasNext()) {
+    console.log(iterator.next());
+  }
+</script>
+</body>
+</html>

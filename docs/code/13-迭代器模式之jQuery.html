@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>迭代器模式之jQuery</title>
+  <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+</head>
+<body>
+<div>
+  <p><a href="#">1</a></p>
+  <p><a href="#">2</a></p>
+  <p><a href="#">3</a></p>
+  <p><a href="#">4</a></p>
+</div>
+<script>
+  let arr = [1, 2, 3];
+  let nodeList = document.getElementsByTagName('a');
+  let $a = $('a');
+
+  arr.forEach(elem => {
+    console.log(elem);
+  });
+
+  for (let i = 0; i < nodeList.length; i++) {
+    console.log(nodeList[i]);
+  }
+
+  $a.each((index, elem) => {
+    console.log(elem);
+  });
+
+  // 一个统一的方法，可以遍历数组，伪数组，jQuery对象
+  function each(data) {
+    let $data = $(data);
+    $data.each((index, elem) => {
+      console.log(index, elem);
+    });
+  }
+  console.log('-------分割线-------');
+  each(nodeList);
+  each($a);
+
+
+</script>
+</body>
+</html>
