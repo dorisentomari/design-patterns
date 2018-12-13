@@ -24,6 +24,9 @@
 + [12-代理模式.md](https://github.com/Dawnight/design-patterns/blob/master/docs/12-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F.md)
 + [13-外观模式.md](https://github.com/Dawnight/design-patterns/blob/master/docs/13-%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F.md)
 + [14-观察者模式.md](https://github.com/Dawnight/design-patterns/blob/master/docs/14-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.md)
++ [15-迭代器模式.md](https://github.com/Dawnight/design-patterns/blob/master/docs/15-%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F.md)
++ [16-状态模式.md](https://github.com/Dawnight/design-patterns/blob/master/docs/16-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F.md)
++ [17-其他设计模式.md](https://github.com/Dawnight/design-patterns/blob/master/docs/17-%E5%85%B6%E4%BB%96%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
 
 # 4. 注
 + 初次学习设计模式，若有不对的地方，还请大家指正，谢谢。
