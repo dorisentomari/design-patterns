@@ -30,7 +30,7 @@
     }
   }
 
-  LoginForm.getInstacne = (function () {
+  LoginForm.getInstance = (function () {
     let instance;
     return function () {
       if (!instance) {
@@ -41,10 +41,10 @@
   })();
 
 
-  let login1 = LoginForm.getInstacne();
+  let login1 = LoginForm.getInstance();
   login1.show();
 
-  let login2 = LoginForm.getInstacne();
+  let login2 = LoginForm.getInstance();
   login2.hide();
 
   console.log('login1 === login2', login1 === login2);

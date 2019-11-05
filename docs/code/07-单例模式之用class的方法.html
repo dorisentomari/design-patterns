@@ -6,33 +6,43 @@
 </head>
 <body>
 <script>
-  class SingleObject {
+class Singleton {
+    static _instance = null;
+
+    /**
+     * @return {null}
+     */
+    constructor() {
+        if(Singleton._instance) {
+            return Singleton._instance;
+        }
+        Singleton._instance = this;
+    }
+
+    static getInstance() {
+        if(Singleton._instance) {
+            return Singleton._instance;
+        }
+        return Singleton._instance = new Singleton();
+    }
+
     login() {
-      console.log('login...');
+        console.log('login...');
     }
-  }
 
-  SingleObject.getInstance = (function () {
-    let instance;
-    return function () {
-      if (!instance) {
-        instance = new SingleObject();
-      }
-      return instance;
-    }
-  })();
+}
 
+let obj1 = Singleton.getInstance();
+obj1.login();
 
-  let obj1 = SingleObject.getInstance();
-  obj1.login();
+let obj2 = Singleton.getInstance();
+obj2.login();
+console.log('obj1 === obj2', obj1 === obj2);
 
-  let obj2 = SingleObject.getInstance();
-  obj2.login();
-  console.log('obj1 === obj2', obj1 === obj2);
+let obj3 = new Singleton();
+obj3.login();
+console.log('obj1 === obj3', obj1 === obj3);
 
-  let obj3 = new SingleObject();
-  obj3.login();
-  console.log('obj1 === obj3', obj1 === obj3);
 </script>
 </body>
 </html>
