@@ -4,10 +4,10 @@ class People {
     this.name = name;
     this.age = age;
   }
-  eat () {
+  eat() {
     console.log(`${this.name} eat...`);
   }
-  speak(){
+  speak() {
     console.log(`${this.name} speak....`);
   }
 }
@@ -22,11 +22,11 @@ wang.speak();
 
 // 子类
 class Student extends People {
-  constructor(name, age, number){
+  constructor(name, age, number) {
     super(name, age);
     this.number = number;
   }
-  study () {
+  study() {
     console.log(`${this.name} study...`);
   }
 }

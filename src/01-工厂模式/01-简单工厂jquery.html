@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery</title>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <li>one</li>
+        <li>two</li>
+    </ul>
+</div>
+
+<script>
+  class JQuery {
+    constructor(selector) {
+      this.selector = selector;
+      let elems = document.querySelectorAll(selector);
+      this.length = elems.length;
+      for (let i = 0; i < elems.length; i++) {
+        this[i] = elems[i];
+      }
+    }
+
+    html() {
+      return this[0] && this[0].innerHTML;
+    }
+
+    addClass(className) {
+      for (let i = 0; i < this.length; i++) {
+        this[i].className = `${this[i].className} ${className}`.trim();
+      }
+    }
+  }
+
+  window.$ = function (selector) {
+    return new JQuery(selector);
+  }
+
+  window.onload = function () {
+    const app = $('#app');
+    console.log(app);
+    console.log(app.html());
+    console.log(app.length);
+
+    const li = $('li');
+    console.log(li);
+    console.log(li.html());
+    console.log(li.length);
+    console.log(li.addClass('haha'));
+  }
+
+
+
+</script>
+
+</body>
+</html>
