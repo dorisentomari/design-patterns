@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>适配器模式-vue</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.common.dev.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>{{name}}</p>
+    <p>{{upperName}}</p>
+</div>
+
+<script>
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        name: 'mark'
+      },
+      computed: {
+        upperName() {
+          return this.name.toUpperCase();
+        }
+      }
+    });
+</script>
+
+</body>
+</html>

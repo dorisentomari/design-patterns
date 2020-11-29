@@ -1,0 +1,24 @@
+{
+  "name": "decorator",
+  "version": "1.0.0",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "babel": ".\\node_modules\\.bin\\babel 05-类装饰器.js -o 05-类装饰器-out.js && node 05-类装饰器-out.js"
+  },
+  "description": "",
+  "dependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/express": "^4.17.9",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "nunjucks": "^3.2.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-decorators": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "babel-cli": "^6.26.0"
+  }
+}

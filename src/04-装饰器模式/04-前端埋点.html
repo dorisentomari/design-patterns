@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>前端埋点</title>
+</head>
+<body>
+<button id="lemon" data-name="lemon">柠檬</button>
+<button id="apple" data-name="apple">苹果</button>
+
+<script>
+    Function.prototype.after = function (afterFn) {
+      let _this = this;
+      return function () {
+        _this.apply(this, arguments);
+        afterFn.apply(this, arguments);
+      }
+    }
+
+    function click(e) {
+      console.log('你点击了', e.target.dataset.name);
+    }
+
+    click = click.after(function (e) {
+      let img = new Image();
+      img.src = `http://localhost:3000/api/bury-point?name=${e.target.dataset.name}`;
+      img.onload = function () {}
+    });
+
+    Array.from(document.querySelectorAll('button')).forEach(button => {
+      button.addEventListener('click', click);
+    });
+
+
+</script>
+
+</body>
+</html>
