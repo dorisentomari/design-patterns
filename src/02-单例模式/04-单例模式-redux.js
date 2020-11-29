@@ -14,20 +14,16 @@ function createStore(reducer) {
 
   function dispatch(action) {
     state = reducer(state, action);
+    listeners.forEach(listener => listener());
   }
+
   return {
     subscribe,
     getState,
     dispatch,
   }
-
-
 }
 
-let reducer = function () {
-
-}
+let reducer = function () {}
 
 let store = createStore(reducer);
-
-

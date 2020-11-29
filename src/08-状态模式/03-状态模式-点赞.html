@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>状态模式-点赞</title>
+</head>
+<body>
+<div id="root"></div>
+<script>
+  let likeState = {
+    render(element) {
+      element.innerHTML = '赞';
+    }
+  };
+
+  let likedState = {
+    render(element) {
+      element.innerHTML = '取消';
+    }
+  };
+
+  class Button {
+    constructor(container) {
+      this.liked = false;
+      this.state = likeState;
+      this.element = document.createElement('button');
+      container.appendChild(this.element);
+      this.render();
+    }
+
+    setState(state) {
+      this.state = state;
+      this.render();
+    }
+
+    render() {
+      this.state.render(this.element);
+    }
+  }
+
+  let button = new Button(document.body);
+  button.render();
+
+  button.element.addEventListener('click', () => {
+    button.liked = !button.liked;
+    button.state = button.liked ? likedState : likeState;
+    button.setState(button.state);
+  });
+
+</script>
+
+
+</body>
+</html>

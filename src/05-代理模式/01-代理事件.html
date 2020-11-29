@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>代理事件</title>
+    <style>
+        li {
+            cursor: pointer;
+        }
+
+        li:hover {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+<ul id="ul">
+    <li data-event="t">1</li>
+    <li data-event="t">2</li>
+    <li data-event="t">3</li>
+</ul>
+
+<script>
+    let ul = document.getElementById('ul');
+
+    ul.addEventListener('click', e => {
+      if (e.target.dataset.event === 't') {
+        console.log(e.target.innerText);
+      }
+    });
+
+</script>
+</body>
+</html>
