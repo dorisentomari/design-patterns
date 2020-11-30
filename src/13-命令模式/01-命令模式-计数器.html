@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>命令模式-计数器</title>
+</head>
+<body>
+
+<span id="number">0</span>
+<button id="addBtn">加1</button>
+<button id="undoBtn">undo</button>
+<button id="redoBtn">redo</button>
+
+<script>
+  const number = document.getElementById('number');
+  const addBtn = document.getElementById('addBtn');
+  const undoBtn = document.getElementById('undoBtn');
+  const redoBtn = document.getElementById('redoBtn');
+
+  let work = {
+    oldValue: 0,
+    index: -1,
+    history: [],
+    add(n = 1) {
+      let oldVal = isNaN(number.innerHTML) ? 0 : parseInt(number.innerHTML);
+      work.oldValue = oldVal;
+      let newValue = oldVal + n;
+      work.history.push(newValue);
+      work.index = work.history.length - 1;
+      number.innerHTML = newValue;
+    },
+    undo() {
+      // 旧的 undo
+      // number.innerHTML = work.oldValue;
+      if (work.index > 0) {
+        work.index--;
+        number.innerHTML = work.history[work.index];
+      }
+    },
+    redo() {
+      if (work.index < work.history.length - 1) {
+        work.index++;
+        number.innerHTML = work.history[work.index];
+      }
+    }
+  };
+
+  class AddCommand {
+    constructor(receiver) {
+      this.receiver = receiver;
+    }
+
+    execute(n) {
+      this.receiver.add(n);
+    }
+  }
+
+  class UndoCommand {
+    constructor(receiver) {
+      this.receiver = receiver;
+    }
+
+    execute() {
+      this.receiver.undo();
+    }
+  }
+
+  class RedoCommand {
+    constructor(receiver) {
+      this.receiver = receiver;
+    }
+
+    execute() {
+      this.receiver.redo();
+    }
+  }
+
+  let addCommand = new AddCommand(work);
+  let undoCommand = new UndoCommand(work);
+  let redoCommand = new RedoCommand(work);
+
+  addBtn.addEventListener('click', e => {
+    addCommand.execute(2);
+  });
+
+  undoBtn.addEventListener('click', e => {
+    undoCommand.execute();
+  });
+
+  redoBtn.addEventListener('click', e => {
+    redoCommand.execute();
+  });
+
+</script>
+
+</body>
+</html>

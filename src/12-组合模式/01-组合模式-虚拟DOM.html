@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组合模式-虚拟DOM</title>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script>
+  class ReactElement {
+    constructor(type, props) {
+      this.type = type;
+      this.props = props;
+    }
+  }
+
+  function createElement(type, props, ...children) {
+    return new ReactElement(type, {...props, children: children.length === 1 ? children[0] : children});
+  }
+
+  let rootElement = createElement('span', null, 'hello', createElement('span', null, 'world', createElement('span', null, '!!!')));
+
+  function render(element, container) {
+    let {type, props} = element;
+    // 创建一个真实的 DOM 元素
+    let domElement = document.createElement(type);
+
+    for (let attr in props) {
+      if (attr === 'children') {
+        if (typeof props[attr] === 'object' && props[attr] !== null) {
+          props[attr].forEach(item => {
+            if (typeof item === 'object') {
+              render(item, domElement);
+            } else {
+              domElement.appendChild(document.createTextNode(item));
+            }
+          });
+        } else {
+          domElement.appendChild(document.createTextNode(props[attr]));
+        }
+      } else if (attr === 'className') {
+        domElement.setAttribute('class', props[attr]);
+      } else {
+        domElement.setAttribute(attr, props[attr]);
+      }
+    }
+    container.appendChild(domElement);
+  }
+
+  render(rootElement, document.getElementById('root'));
+</script>
+
+</body>
+</html>
