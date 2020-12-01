@@ -1,0 +1,46 @@
+.modal {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -200px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background: #ddd;
+}
+
+.modal button {
+    width: 100px;
+    height: 20px;
+    position: absolute;
+    border: none;
+    outline: none;
+    background: #84fb84;
+    cursor: pointer;
+}
+
+.modal button:hover {
+    background: #2cea2c;
+}
+
+.modal .button.confirm {
+    right: 140px;
+}
+
+.modal .button.cancel {
+    right: 20px;
+}
+
+.modal .close-me {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>享元模式-按钮</title>
+</head>
+<body>
+
+<label><input type="radio" name="color" value="red" checked>red</label>
+<label><input type="radio" name="color" value="green">green</label>
+<label><input type="radio" name="color" value="blue">blue</label>
+
+<p>
+    <button id="drawBtn">绘制</button>
+</p>
+
+<div id="container"></div>
+<script>
+  const drawBtn = document.getElementById('drawBtn');
+  drawBtn.addEventListener('click', () => {
+    const colorsDom = Array.from(document.getElementsByName('color'));
+    let checkedDom = colorsDom.find(item => item.checked);
+    const color = checkedDom.value;
+    const div = document.createElement('div');
+    div.style = `width:100px;height:100px;background-color: ${color}`;
+    const container = document.getElementById('container');
+    const children = container.children;
+    if (children && children.length > 0) {
+      for (let i = 0; i < children.length; i++) {
+        container.removeChild(children[i]);
+      }
+    }
+    container.appendChild(div);
+  });
+</script>
+
+</body>
+</html>

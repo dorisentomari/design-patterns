@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模板方法模式-弹窗</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="modal.js"></script>
+</head>
+<body>
+<script>
+    const modal = new CloseMeModal({
+      title: '页面弹窗标题',
+      content: '页面内容区域',
+      onConfirmText: '确定操作',
+      onCancelText: '取消操作',
+      onConfirm(e) { console.log('onConfirm', e); },
+      onCancel(e) { console.log('onCancel', e); }
+    });
+    modal.init();
+    modal.eventListener();
+</script>
+
+
+</body>
+</html>

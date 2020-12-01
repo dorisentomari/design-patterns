@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>享元模式-分页</title>
+</head>
+<body>
+<button id="nextPage" onClick="goNext()">下一页</button>
+<ul id="news"></ul>
+
+<script>
+  let list = [];
+  for (let i = 1; i <= 20; i++) {
+    list.push(`新闻-${i}`);
+  }
+
+  let getLi = (function () {
+    let lis = [];
+    return function () {
+      let element;
+      if (lis.length < 5) {
+        element = document.createElement('li');
+        lis.push(element);
+      } else {
+        // 从左端删除，添加到右端
+        element = lis.shift();
+        lis.push(element);
+      }
+      return element;
+    }
+  })();
+  let pageNum = 0
+  let pageSize = 5;
+  const newsDom = document.getElementById('news');
+
+  function goNext() {
+    pageNum++;
+    let start = (pageNum - 1) * pageSize;
+    for (let i = 0; i <= 5; i++) {
+      let element = getLi();
+      element.innerHTML = `新闻-${list[start + i]}`;
+      newsDom.appendChild(element);
+    }
+  }
+
+</script>
+
+
+</body>
+</html>
